@@ -56,6 +56,7 @@ fetch('http://www.omdbapi.com/?s=batman&apikey=ec1cdb39')
             return localStorage.getItem('products') ? JSON.parse(localStorage.getItem('products')) : [];
             // returns empty array if there isn't any product info
         }
+        console.log(getProductFromStorage());
         // const clickedProduct=document.getElementsByName('.btn add-to-cart');
         // console.log(clickedProduct);
         // clickedProduct.addEventListener('click',()=>{
@@ -64,6 +65,52 @@ fetch('http://www.omdbapi.com/?s=batman&apikey=ec1cdb39')
         // listItems.classList.add('items-container');
         // listItems.innerHTML=
     })
-.catch(err => console.log(err))
-const selectedProduct = document.querySelector('.btn add-to-cart');
-console.log(selectedProduct);
+.catch(err => console.log(err));
+const cartContainer=document.querySelector('.cart-container');
+console.log(cartContainer);
+// const cartModal=(product)=>{
+//    const viewItemModal=`
+//         <img src = "${product.imgSrc}" alt = "product image">
+//         <div class = "cart-item-info">
+//             <h3 class = "cart-item-name">${product.name}</h3>
+//             <span class = "cart-item-category">${product.category}</span>
+//             <span class = "cart-item-price">${product.price}</span>
+//         </div>
+//         <button type = "button" class = "cart-item-del-btn">
+//             <i class = "fas fa-times"></i>
+//         </button>
+//     `;
+//     const cartItem=document.createElement('div');
+//     cartItem.innerHTML=viewItemModal;
+//     cartContainer.appendChild(cartItem);
+
+
+// }
+const buttonCart=document.querySelector('.cart-btn');
+const closeButton=document.querySelector('.icon-btn');
+console.log(buttonCart);
+buttonCart.addEventListener('click',()=>{
+    cartContainer.style.display='block';
+    const selectedMovies=JSON.parse(localStorage.getItem('products'));
+    selectedMovies.forEach((product)=>{
+        const viewItemModal=`
+        <img class="modal-img" src = "${product.imgSrc}" alt = "product image">
+        <div class = "cart-item-info">
+            <h3 class = "cart-item-name">${product.name}</h3>
+            <span class = "cart-item-price">${product.price}</span>
+        </div>
+        <button type = "button" class = "icon-btn trash">
+        <i class="far fa-trash-alt"></i>
+        </button>
+    `;
+    const cartItem=document.createElement('div');
+    cartItem.classList.add('cart-item');
+    cartItem.innerHTML=viewItemModal;
+    cartContainer.appendChild(cartItem);
+    
+    })
+    
+})
+closeButton.addEventListener('click',()=>{
+    cartContainer.style.display='none';
+})
