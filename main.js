@@ -1,5 +1,6 @@
 const productList = document.querySelector('.items-container');
-console.log(productList)
+
+
 fetch('http://www.omdbapi.com/?s=batman&apikey=ec1cdb39')
 .then(res => res.json())
  .then(data =>{
@@ -49,43 +50,21 @@ fetch('http://www.omdbapi.com/?s=batman&apikey=ec1cdb39')
             let products = getProductFromStorage();
             products.push(item);
             localStorage.setItem('products', JSON.stringify(products));
-        }
-        
-        // get all the products info if there is any in the local storage
+        };
+
+
         function getProductFromStorage(){
             return localStorage.getItem('products') ? JSON.parse(localStorage.getItem('products')) : [];
-            // returns empty array if there isn't any product info
         }
-        console.log(getProductFromStorage());
-        // const clickedProduct=document.getElementsByName('.btn add-to-cart');
-        // console.log(clickedProduct);
-        // clickedProduct.addEventListener('click',()=>{
-        // })
-        // const listItems=document.createElement('div');
-        // listItems.classList.add('items-container');
-        // listItems.innerHTML=
+        const quantityCart=document.createElement('p');
+        const cartDetail=document.querySelector('.cart-detail');
+        cartDetail.appendChild(quantityCart);
+        quantityCart.textContent=getProductFromStorage().length;
     })
 .catch(err => console.log(err));
 const cartContainer=document.querySelector('.cart-container');
 console.log(cartContainer);
-// const cartModal=(product)=>{
-//    const viewItemModal=`
-//         <img src = "${product.imgSrc}" alt = "product image">
-//         <div class = "cart-item-info">
-//             <h3 class = "cart-item-name">${product.name}</h3>
-//             <span class = "cart-item-category">${product.category}</span>
-//             <span class = "cart-item-price">${product.price}</span>
-//         </div>
-//         <button type = "button" class = "cart-item-del-btn">
-//             <i class = "fas fa-times"></i>
-//         </button>
-//     `;
-//     const cartItem=document.createElement('div');
-//     cartItem.innerHTML=viewItemModal;
-//     cartContainer.appendChild(cartItem);
 
-
-// }
 const buttonCart=document.querySelector('.cart-btn');
 const closeButton=document.querySelector('.icon-btn');
 console.log(buttonCart);
@@ -116,10 +95,10 @@ buttonCart.addEventListener('click',()=>{
         let cartItem;
         if(e.target.tagName === "BUTTON"){
             cartItem = e.target.parentElement;
-            cartItem.remove(); // this removes from the DOM only
+            cartItem.remove(); 
         } else if(e.target.tagName === "I"){
             cartItem = e.target.parentElement.parentElement;
-            cartItem.remove(); // this removes from the DOM only
+            cartItem.remove(); 
         }
         let updatedProducts = selectedMovies.filter((filteredMovies)=>(filteredMovies.id!==deletedMovie))
         console.log(updatedProducts)
