@@ -4,7 +4,6 @@ const productList = document.querySelector('.items-container');
 fetch('http://www.omdbapi.com/?s=batman&apikey=ec1cdb39')
 .then(res => res.json())
  .then(data =>{
-     console.log(data);
         let html = '';
         const price=20;
         data.Search.forEach(product => {
@@ -25,11 +24,10 @@ fetch('http://www.omdbapi.com/?s=batman&apikey=ec1cdb39')
         });
         productList.innerHTML = html;
         const selectedProduct = document.querySelectorAll('.add-to-cart');
-        console.log(selectedProduct);
-        function purchaseProduct(e){
+        const purchaseProduct=(e)=>{
             if(e.target.classList.contains('add-to-cart')){
                 let product = e.target.parentElement;
-                console.log(product);
+
                 getProductInfo(product);
             }
         }
@@ -43,19 +41,17 @@ fetch('http://www.omdbapi.com/?s=batman&apikey=ec1cdb39')
                 category: product.querySelector('.product-category').textContent,
                 price: product.querySelector('.product-price').textContent
             }
-            console.log(productInfo);
             saveProductInStorage(productInfo);
         }
-        function saveProductInStorage(item){
+        const saveProductInStorage=(item)=>{
             let products = getProductFromStorage();
             products.push(item);
             localStorage.setItem('products', JSON.stringify(products));
         };
-
-
-        function getProductFromStorage(){
+        const getProductFromStorage=()=>{
             return localStorage.getItem('products') ? JSON.parse(localStorage.getItem('products')) : [];
         }
+
         const quantityCart=document.createElement('p');
         const cartDetail=document.querySelector('.cart-detail');
         cartDetail.appendChild(quantityCart);
@@ -63,15 +59,13 @@ fetch('http://www.omdbapi.com/?s=batman&apikey=ec1cdb39')
     })
 .catch(err => console.log(err));
 const cartContainer=document.querySelector('.cart-container');
-console.log(cartContainer);
 
 const buttonCart=document.querySelector('.cart-btn');
 const closeButton=document.querySelector('.icon-btn');
-console.log(buttonCart);
+
 buttonCart.addEventListener('click',()=>{
     cartContainer.style.display='block';
     const selectedMovies=JSON.parse(localStorage.getItem('products'));
-    console.log(selectedMovies);
     selectedMovies.forEach((product)=>{
         const viewItemModal=`
         <img class="modal-img" src = "${product.imgSrc}" alt = "product image">
@@ -88,7 +82,7 @@ buttonCart.addEventListener('click',()=>{
     cartItem.innerHTML=viewItemModal;
     cartContainer.appendChild(cartItem);
     const deleteMovie=cartItem.querySelector('.trash');
-    console.log(deleteMovie);
+
     const deleteSelectedMovie=(e)=>{
         const deletedMovie=String(e.target.value);
         console.log(e.target.tagName);
