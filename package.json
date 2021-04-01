@@ -20,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/VeroFlores/vanilla-shopping-cart/issues"
   },
-  "homepage": "https://github.com/VeroFlores/vanilla-shopping-cart#readme",
+  "homepage": "https://veroflores.github.io/vanilla-shopping-cart/",
   "devDependencies": {
     "eslint": "^7.23.0"
   }
