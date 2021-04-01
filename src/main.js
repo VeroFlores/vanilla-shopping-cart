@@ -1,7 +1,7 @@
 const productList = document.querySelector('.items-container');
 
 
-fetch('http://www.omdbapi.com/?s=batman&apikey=ec1cdb39')
+fetch('https://www.omdbapi.com/?s=batman&apikey=ec1cdb39')
 .then(res => res.json())
  .then(data =>{
         let html = '';
