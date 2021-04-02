@@ -1,38 +1,23 @@
+import {cardView} from './templates/modal.js';
+import {movieCard} from './templates/movie.js';
+console.log(cardView);
 const productList = document.querySelector('.items-container');
-
 
 fetch('http://www.omdbapi.com/?s=batman&apikey=ec1cdb39')
 .then(res => res.json())
  .then(data =>{
         let html = '';
-        const price=20;
         data.Search.forEach(product => {
-            html += `
-                <div class = "product-item">
-                    <div class = "product-img">
-                        <img src = "${product.Poster}" alt = "product image">
-                    </div>
-                    <div class = "product-content">
-                        <h3 class = "product-name color">${product.Title}</h3>
-                        <span class = "product-category color">${product.Year}</span>
-                        <p class = "product-price color">$${price}</p>
-                        <p class="product-code color">${product.imdbID}</p>
-                    </div>
-                    <input type = "button" class = "btn add-to-cart" value="Add to cart">
-                </div>
-            `;
+            html += movieCard(product);
         });
         productList.innerHTML = html;
-        const selectedProduct = document.querySelectorAll('.add-to-cart');
         const purchaseProduct=(e)=>{
             if(e.target.classList.contains('add-to-cart')){
                 let product = e.target.parentElement;
-
                 getProductInfo(product);
             }
         }
         productList.addEventListener('click', purchaseProduct);
-        
         const getProductInfo=(product)=>{
             let productInfo = {
                 id: product.querySelector('.product-code').textContent,
@@ -58,28 +43,19 @@ fetch('http://www.omdbapi.com/?s=batman&apikey=ec1cdb39')
         quantityCart.textContent=getProductFromStorage().length;
     })
 .catch(err => console.log(err));
-const cartContainer=document.querySelector('.cart-container');
 
+const cartContainer=document.querySelector('.cart-container');
 const buttonCart=document.querySelector('.cart-btn');
 const closeButton=document.querySelector('.icon-btn');
-
+console.log(buttonCart);
 buttonCart.addEventListener('click',()=>{
     cartContainer.style.display='block';
     const selectedMovies=JSON.parse(localStorage.getItem('products'));
     selectedMovies.forEach((product)=>{
-        const viewItemModal=`
-        <img class="modal-img" src = "${product.imgSrc}" alt = "product image">
-        <div class = "cart-item-info">
-            <h3 class = "cart-item-name">${product.name}</h3>
-            <span class = "cart-item-price">${product.price}</span>
-        </div>
-        <button type = "button" value="${product.id}" class = "icon-btn trash">
-        <i class="far fa-trash-alt" ></i>
-        </button>
-    `;
+
     const cartItem=document.createElement('div');
     cartItem.classList.add('cart-item');
-    cartItem.innerHTML=viewItemModal;
+    cartItem.innerHTML=cardView(product);
     cartContainer.appendChild(cartItem);
     const deleteMovie=cartItem.querySelector('.trash');
 
