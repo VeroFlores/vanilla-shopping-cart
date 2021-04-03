@@ -1,6 +1,6 @@
 import {cardView} from './templates/modal.js';
 import {movieCard} from './templates/movie.js';
-console.log(cardView);
+
 const productList = document.querySelector('.items-container');
 const cartContainer=document.querySelector('.modal-container');
 const moviesSelected=document.querySelector('.movie-selected-list');
@@ -55,18 +55,15 @@ const getProductFromStorage=()=>{
 
 const updateCart=()=>{
     const quantityCart=document.querySelector('.quantity-cart');
-    console.log(quantityCart);
     const productsInCart=getProductFromStorage().length;
-    console.log(updateCart);
     quantityCart.textContent=productsInCart;
-    console.log(quantityCart);
 }
 const sumProducts=()=>{
     const sum=getProductFromStorage().reduce((acc,selectedMovie)=>acc+selectedMovie.price,0);
 const payment=document.querySelector('.total-payment');
 payment.textContent=sum;
 }
-console.log(sumProducts());
+
 const modalCart=()=>{
 getProductFromStorage().forEach((product)=>{
     const cartItem=document.createElement('div');
@@ -76,12 +73,8 @@ getProductFromStorage().forEach((product)=>{
 
 })}
 modalCart();
-const deleteMovie=document.querySelector('.trash');
-console.log(deleteMovie);
-
     const deleteSelectedMovie=(e)=>{
         const deletedMovie=String(e.target.value);
-        console.log(e.target.tagName);
         let cartItem;
         if(e.target.tagName === "BUTTON"){
             cartItem = e.target.parentElement;
@@ -91,7 +84,6 @@ console.log(deleteMovie);
             cartItem.remove(); 
         }
         let updatedProducts = getProductFromStorage().filter((filteredMovies)=>(filteredMovies.id!==deletedMovie))
-        console.log(updatedProducts)
         localStorage.setItem('products', JSON.stringify(updatedProducts));
         updateCart();
         sumProducts();
