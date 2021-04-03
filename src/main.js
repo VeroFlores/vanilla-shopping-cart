@@ -71,7 +71,9 @@ getProductFromStorage().forEach((product)=>{
     cartItem.innerHTML=cardView(product);
     moviesSelected.appendChild(cartItem);
 
-})}
+})
+    sumProducts();
+}
 modalCart();
     const deleteSelectedMovie=(e)=>{
         const deletedMovie=String(e.target.value);
