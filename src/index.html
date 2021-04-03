@@ -12,15 +12,24 @@
     <nav>
         <h1>BlockBuster</h1>
         <div class=cart-detail>
+            <p class='quantity-cart'></p>
             <span class="cart-btn margin"><i class="fas fa-shopping-cart"></i></span>
         </div>
 
     </nav>
     <div class="items-container"></div>
-    <div class="cart-container">
+    <div class="modal-container">
         <button type = "button" class = "icon-btn close">
             <i class = "fas fa-times"></i>
         </button>
+        <div class="cart-container">
+            <h1>Your cart</h1>
+            <div class="movie-selected-list"></div>
+            <div class="detail-payment">
+                <p>PAYMENT</p>
+                <p class=total-payment>Payment</p>
+            </div>
+        </div>
     </div>
     <script src="main.js" type="module"></script>
 </body>

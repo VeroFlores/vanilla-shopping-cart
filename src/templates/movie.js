@@ -1,5 +1,4 @@
 export const movieCard=(product)=>{
-    const price=20;
     const itemCard=`
     <div class = "product-item">
         <div class = "product-img">
@@ -8,7 +7,10 @@ export const movieCard=(product)=>{
         <div class = "product-content">
             <h3 class = "product-name color">${product.Title}</h3>
             <span class = "product-category color">${product.Year}</span>
-            <p class = "product-price color">$${price}</p>
+            <div class="price-detail">
+                <p>$</p>
+                <p class = "product-price color">10</p>
+            </div>
             <p class="product-code color">${product.imdbID}</p>
         </div>
         <input type = "button" class = "btn add-to-cart" value="Add to cart">

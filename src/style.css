@@ -1,6 +1,7 @@
 *{
     padding: 0;
     margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 img{
     width:100%;
@@ -63,11 +64,11 @@ nav div{
     background-color:#e50914;
   }
   /*modal*/
-  .cart-container {
+  .modal-container {
     display: none;
     position: fixed;
     z-index: 1; 
-    padding-top: 100px; 
+    padding-top: 50px; 
     left: 0;
     top: 0;
     width: 100%;
@@ -76,19 +77,31 @@ nav div{
     background-color: rgb(0,0,0); 
     background-color: rgba(0,0,0,0.8)
   }
-  .cart-item{
-    background-color: #fefefe;
+  .movie-selected-list{
+    height: 400px;
+    overflow: scroll;
+}
+  .cart-container{
+    border-radius: 15px;
+    background-color:#fff;
     margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
+    border: 5px solid #e50914;
     width: 80%;
+  }
+  .cart-container h1{
+    text-align: center;
+    padding:1em;
+  }
+  .cart-item{
+    border-bottom: 1px solid #444243;
+    padding: 20px;
     display:grid;
     grid-template-columns:40% 40% 20%;
     align-items: center;
     justify-items: center;
   }
 .modal-img{
-    width:50%;
+    width:35%;
     height:auto;
 }
 .icon-btn{
@@ -107,4 +120,15 @@ nav div{
 }
 .margin{
   margin: 0.2em;
+}
+.detail-payment{
+text-align: center;
+  display: grid;
+  grid-template-columns:70% 30%;
+  color:#fff;
+  background-color:#e50914;
+}
+.price-detail{
+  display:flex;
+  flex-direction:row;
 }
